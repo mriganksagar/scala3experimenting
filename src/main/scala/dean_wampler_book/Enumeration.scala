@@ -56,6 +56,12 @@ object SealedADT{
     final case class Leaf[T](value: T) extends Tree[T]
 }
 
+/* 
+    Notice that Branch and Leaf don’t extend Tree in EnumADT,
+    while in WeekDay, each day extends WeekDay.
+    For Branch and Leaf, extending Tree is inferred by the compiler, although we could add this explicitly.
+    For WeekDay, each day must extend WeekDay to provide a value for the fullName field declared by WeekDay.
+ */
 
 object EnumADT {
 
