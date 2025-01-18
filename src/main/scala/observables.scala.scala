@@ -28,7 +28,7 @@ class ObservableButton extends Button with Subject[Button]:
         super.click()
         notifyObservers(this)
 
-object Main extends App{
+object Main2 extends App{
     val mybutton = new ObservableButton
     mybutton.click()
 }
