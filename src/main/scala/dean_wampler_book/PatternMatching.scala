@@ -41,7 +41,7 @@ object PatternMatchingDemo {
       case i: Int           => s"Int: $i"
       case s: String        => s"String: $s"
       case ls: List[String] => s"List[String]: $ls"
-      case li: List[Int]    => s"List[Int]: $li"
+      case li: List[Int]    => s"List[Int]: $li" // warning unreachable case
       case other            => s"Other: $other"
     }
     
