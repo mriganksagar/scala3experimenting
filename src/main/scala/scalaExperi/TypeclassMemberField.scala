@@ -4,8 +4,10 @@ package scalaExperi
     I will be creating a typeclass to provide toJason method
 
     I will be using given instance to keep some state as well beside methods
+    and modify this state 
+    The state is shared in a typeclass instance
 
-    indentation will be kept in given instance
+    on changing indendation, it will for all using that instance ToJason[Person]
  */
 
 trait ToJason[A]:
@@ -22,7 +24,7 @@ given ToJason[Person] with
                                             |${indentation} age : ${a.age} 
                                             |}""".stripMargin
 
-object DemoTypeClass extends App {
+object DemoTypeClassMemberField extends App {
   val p = Person("alok", 43)
   println(p.toJason) // indentation is 2 spaces now
 
