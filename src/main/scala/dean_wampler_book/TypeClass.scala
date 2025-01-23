@@ -89,3 +89,16 @@ object TypeClassDemo extends App {
   )
   println(multiplicativeIntMonoid.combine(10)(10))
 }
+
+
+object TypeClassDemo2 extends App{
+
+    // the initialisation is lazy won't be created unless accessed
+    given additiveIntMonoid: Monoid[Int] with {
+      println("abc")
+      def Unit: Int = 0
+      extension (a: Int) infix def combine(b: Int): Int = a + b
+    }
+
+    // println(7 <+> 5)
+}
