@@ -28,7 +28,7 @@ object PatternMatchingDemo {
   }
 
   /*
-        Pattern matching problems:
+        Pattern matching's problems:
 
         Type erasure, nested types are deleted before runtime and can't be matched
 

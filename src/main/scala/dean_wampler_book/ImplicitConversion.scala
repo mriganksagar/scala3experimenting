@@ -17,7 +17,7 @@ case class Dollar(amount: Double)
 case class Percentage(value: Double)
 
 case class Salary(gross: Dollar, bonus: Percentage)
-object ImplicitConversion extends App {
+object ImplicitConversionDemo extends App {
 
     given Conversion[Double, Dollar] = d => Dollar(d)
     given Conversion[Double, Percentage] = d => Percentage(d) 
@@ -28,4 +28,36 @@ object ImplicitConversion extends App {
 
     println(arunsSalary)
     println(aloksSalary)
+}
+
+// complex number case class
+case class ComplexNumber(r: Int, i: Int ){
+    def + (other: ComplexNumber) = ComplexNumber(r + other.r, i + other.i)
+}
+
+object ComplexNumber{
+    given fromTuple: Conversion[(Int, Int), ComplexNumber] = (a, b) => ComplexNumber(a,b)  
+}
+
+object ImplicitConversionDemo2 extends App {
+    ComplexNumber(1, -5) + (4,5)
+
+    /*
+        Below line won't work without this given import though above line worked without
+        WHY ? 
+        i think in first cases scala would look for Converion[(Int, Int), ComplexNumber]
+        in companion of Conversion,  A, and B and also their supertypes' companions
+
+        by this logic it should find given in object ComplexNumber
+        but i think with (4,5) + ComplexNumber(5,5),
+        scala doesn't make guesses for conversion (cause conversion has pitfalls)
+        
+        but it only looks for methods or extension method instead of converting
+        
+        WHY Importing ComplexNumber.given Fixes It ?
+        By importing ComplexNumber.given, we bring the fromTuple conversion into the local scope,
+        making it available as a potential candidate for the extension method search
+     */
+    import ComplexNumber.given
+    (4, 5) + ComplexNumber(1, -5)
 }
