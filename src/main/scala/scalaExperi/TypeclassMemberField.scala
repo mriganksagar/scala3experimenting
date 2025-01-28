@@ -3,11 +3,10 @@ package scalaExperi
 /*
     I will be creating a typeclass to provide toJason method
 
-    I will be using given instance to keep some state as well beside methods
-    and modify this state 
-    The state is shared in a typeclass instance
+    In given instance, I keep some data or state beside methods
+    and modify this state to see if new state is reflected in objects using a single typeclass instance
 
-    on changing indendation, it will for all using that instance ToJason[Person]
+    on changing state, it will be reflected
  */
 
 trait ToJason[A]:
